@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/Shudrum/ArrayFinder.svg?branch=master)](https://travis-ci.org/Shudrum/ArrayFinder)
+
 #ArrayFinder Component
 
 The ArrayFinder component allow you to manage large nested arrays with ease.
