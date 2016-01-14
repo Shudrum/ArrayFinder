@@ -58,6 +58,17 @@ class ArrayFinderTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(true, isset($this->arrayFinder['here']));
     }
 
+    public function testArrayAccessIssetRecursive()
+    {
+        $this->assertEquals(true, isset($this->arrayFinder['a.b']));
+        $this->assertEquals(true, isset($this->arrayFinder['a.b.c']));
+    }
+
+    public function testArrayAccessIssetRecursiveOnNonExistingPath()
+    {
+        $this->assertEquals(false, isset($this->arrayFinder['a.b.c.d.e']));
+    }
+
     public function testSimpleGet()
     {
         $this->assertEquals('hello', $this->arrayFinder->get('0'));

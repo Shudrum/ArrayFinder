@@ -27,7 +27,23 @@ class ArrayFinder implements
      */
     public function offsetExists($offset)
     {
-        return isset($this->content[$offset]);
+        if (strpos($offset, $this->pathSeparator) !== false) {
+
+            $explodedPath = explode($this->pathSeparator, $offset);
+            $lastOffset = array_pop($explodedPath);
+
+            $offsetExists = false;
+            $containerPath = implode($this->pathSeparator, $explodedPath);
+
+            $this->callAtPath($containerPath, function($container) use ($lastOffset, &$offsetExists) {
+                $offsetExists = isset($container[$lastOffset]);
+            });
+
+            return $offsetExists;
+
+        } else {
+            return isset($this->content[$offset]);
+        }
     }
 
     /**
