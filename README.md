@@ -22,6 +22,12 @@ $myValue = $arrayFinder->get('level_1.level_2.level_3');
 $myValue = $arrayFinder['level_1.level_2.level_3'];
 ```
 
+To install this package, you can simply use composer:
+
+```
+composer require shudrum/array-finder
+```
+
 ##Documentation
 
 ###Methods
