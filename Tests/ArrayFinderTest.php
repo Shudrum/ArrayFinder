@@ -229,4 +229,21 @@ class ArrayFinderTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals('end', $content['a']['b']['c']);
     }
+
+    public function testGetAcceptsADefaultArgument()
+    {
+        // ensure the default value is not returned when
+        // the array does have the key
+        $this->assertEquals(
+            "is defined",
+            (new ArrayFinder(["some" => ["key" => "is defined"]]))->get("some.key", "default value")
+        );
+
+        // ensure that when the key is not defined, the default
+        // value is used
+        $this->assertEquals(
+            "default value",
+            (new ArrayFinder([]))->get("some.key", "default value")
+        );
+    }
 }
