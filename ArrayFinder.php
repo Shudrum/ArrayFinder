@@ -161,22 +161,25 @@ class ArrayFinder implements
 
     /**
      * Return a value from the array corresponding to the path.
+     * If the path is not set in the array, then $default is returned.
      *
      * ex:
      * $a = ['a' => ['b' => 'yeah']];
      * echo $this->get('a.b'); // yeah
+     * echo $this->get('a.b.c', 'nope'); // nope
      *
      * @param string|int|null $path Path to the value. If null, return all the content.
+     * @param mixed $default Default value to return when path is not contained in the array.
      *
      * @return mixed|null Value on the array corresponding to the path, null if the key does not exist.
      */
-    public function get($path = null)
+    public function get($path = null, $default = null)
     {
         if ($path === null) {
             return $this->content;
         }
 
-        $value = null;
+        $value = $default;
         $this->callAtPath($path, function(&$offset) use (&$value) {
             $value = $offset;
         });
