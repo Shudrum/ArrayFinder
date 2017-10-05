@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/Shudrum/ArrayFinder.svg?branch=master)](https://travis-ci.org/Shudrum/ArrayFinder)
 
-#ArrayFinder Component
+# ArrayFinder Component
 
 The ArrayFinder component allow you to manage large nested arrays with ease.
 
@@ -28,11 +28,11 @@ To install this package, you can simply use composer:
 composer require shudrum/array-finder
 ```
 
-##Documentation
+## Documentation
 
-###Methods
+### Methods
 
-####get($path)
+#### get($path)
 
 You can get a value following a path separated by a '.'.
 
@@ -56,7 +56,7 @@ $myValue = $arrayFinder->get(0); // value3
 
 If the path is `null`, all the content will be returned.
 
-####set($path, $value)
+#### set($path, $value)
 
 You can add a value to a specific path separated by a '.'. If the nested arrays does not exists, it will be created.
 
@@ -69,7 +69,7 @@ $arrayFinder->set('a.b', 'value');
 $arrayFinder->get(); // ['a' => ['b' => 'value]]
 ```
 
-####changeSeparator($separator)
+#### changeSeparator($separator)
 
 If the default separator (.) does not fit to your needs, you can call this method to change it.
 
@@ -82,11 +82,11 @@ $myValue = $arrayFinder->changeSeparator('/');
 $myValue = $arrayFinder->get('a/b/c');
 ```
 
-###Implementations
+### Implementations
 
 The ArrayFinder component implements some usefull interfaces:
 
-####ArrayAccess
+#### ArrayAccess
 
 You can use this object like an array:
 
@@ -100,7 +100,7 @@ $arrayFinder['a.b.c'] = 'value';
 unset($arrayFinder['a.b']);
 ```
 
-####Countable
+#### Countable
 
 You can use count on this object:
 
@@ -113,7 +113,7 @@ count($arrayFinder);
 count($arrayFinder['a.b']);
 ```
 
-####Iterator
+#### Iterator
 
 You can iterate on this object:
 
@@ -127,7 +127,7 @@ foreach ($arrayFinder as $key => $value) {
 }
 ```
 
-####Serializable
+#### Serializable
 
 You can easily serialize / unserialize this object.
 
