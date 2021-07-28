@@ -25,6 +25,7 @@ class ArrayFinder implements
     /**
      * {@inheritdoc}
      */
+    #[\ReturnTypeWillChange]
     public function offsetExists($offset)
     {
         if (strpos($offset, $this->pathSeparator) !== false) {
@@ -49,6 +50,7 @@ class ArrayFinder implements
     /**
      * {@inheritdoc}
      */
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->get($offset);
@@ -57,6 +59,7 @@ class ArrayFinder implements
     /**
      * {@inheritdoc}
      */
+    #[\ReturnTypeWillChange]
     public function offsetSet($offset, $value)
     {
         if (is_null($offset)) {
@@ -69,6 +72,7 @@ class ArrayFinder implements
     /**
      * {@inheritdoc}
      */
+    #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
         $path = explode($this->pathSeparator, $offset);
@@ -82,6 +86,7 @@ class ArrayFinder implements
     /**
      * {@inheritdoc}
      */
+    #[\ReturnTypeWillChange]
     public function count()
     {
         return count($this->content);
@@ -90,6 +95,7 @@ class ArrayFinder implements
     /**
      * {@inheritdoc}
      */
+    #[\ReturnTypeWillChange]
     public function current()
     {
         $keys = array_keys($this->content);
@@ -99,6 +105,7 @@ class ArrayFinder implements
     /**
      * {@inheritdoc}
      */
+    #[\ReturnTypeWillChange]
     public function next()
     {
         ++$this->position;
@@ -107,6 +114,7 @@ class ArrayFinder implements
     /**
      * {@inheritdoc}
      */
+    #[\ReturnTypeWillChange]
     public function key()
     {
         $keys = array_keys($this->content);
@@ -116,6 +124,7 @@ class ArrayFinder implements
     /**
      * {@inheritdoc}
      */
+    #[\ReturnTypeWillChange]
     public function valid()
     {
         $keys = array_keys($this->content);
@@ -125,6 +134,7 @@ class ArrayFinder implements
     /**
      * {@inheritdoc}
      */
+    #[\ReturnTypeWillChange]
     public function rewind()
     {
         $this->position = 0;
@@ -137,11 +147,21 @@ class ArrayFinder implements
         return serialize($this->content);
     }
 
+    public function __serialize()
+    {
+        return $this->content;
+    }
+
     /**
      * {@inheritdoc}
      */
     public function unserialize($content) {
         $this->content = unserialize($content);
+    }
+
+    public function __unserialize($data)
+    {
+        $this->content = $data;
     }
 
     /**
